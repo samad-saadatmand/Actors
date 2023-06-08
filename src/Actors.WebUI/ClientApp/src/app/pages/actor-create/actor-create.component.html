@@ -1,0 +1,90 @@
+<div>
+  <form [formGroup]="actorForm" class="needs-validation" novalidate>
+    <div class="row">
+      <div class="form-group col-12 col-md-6 mt-2">
+        <label for="firstName">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          formControlName="firstName"
+          required
+          maxlength="256"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="
+            actorForm.get('firstName')?.invalid &&
+            (actorForm.get('firstName')?.dirty ||
+              actorForm.get('firstName')?.touched)
+          "
+        >
+          <div *ngIf="actorForm.get('firstName')?.errors?.required">
+            First Name is required.
+          </div>
+          <div *ngIf="actorForm.get('firstName')?.errors?.maxLength">
+            First Name cannot be longer than 256 characters.
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-12 col-md-6 mt-2">
+        <label for="lastName">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          formControlName="lastName"
+          required
+          maxlength="256"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="
+            actorForm.get('lastName')?.invalid &&
+            (actorForm.get('lastName')?.dirty ||
+              actorForm.get('lastName')?.touched)
+          "
+        >
+          <div *ngIf="actorForm.get('lastName')?.errors?.required">
+            Last Name is required.
+          </div>
+          <div *ngIf="actorForm.get('lastName')?.errors?.maxLength">
+            Last Name cannot be longer than 256 characters.
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-12 col-md-6 mt-2">
+        <label for="age">Age</label>
+        <input
+          type="number"
+          class="form-control"
+          id="age"
+          formControlName="age"
+          required
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="
+            actorForm.get('age')?.invalid &&
+            (actorForm.get('age')?.dirty || actorForm.get('age')?.touched)
+          "
+        >
+          <div *ngIf="actorForm.get('age')?.errors?.required">
+            Age is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary mt-2 me-2"
+      [disabled]="actorForm.invalid"
+      (click)="onSubmit()"
+    >
+      Create Actor
+    </button>
+
+    <a class="btn btn-secondary mt-2" [routerLink]="['/']"> Back </a>
+  </form>
+</div>

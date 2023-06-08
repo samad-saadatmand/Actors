@@ -1,0 +1,40 @@
+<div>
+    <div>
+        <h2>Actor Details</h2>
+        <hr />
+        <div class="row mb-5">
+            <div class="col-md-6 mt-3">
+                <h5>{{ actor.firstName }} {{ actor.lastName }}</h5>
+                <h6>{{ actor.age }} years old</h6>
+            </div>
+            <div class="col-md-6 mt-3">
+
+                <div class="row">
+                    <div class="col-12 fw-bold ">Recent 3 Movies:</div>
+                    <div class="col-4" *ngFor="let movie of mostRecentMovies">
+                        {{movie.name}} ({{movie.releaseDate | date:'yyyy' }})
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <div>
+            <span class="fw-bold" style="font-size:large">All Movies</span>
+            <a class="btn btn-primary float-right"
+               [routerLink]="['/movie/create', actor.id]">
+                New Movie
+            </a>
+        </div>
+        <hr class="mt-4" />
+        <app-actor-movies [id]="actor.id" (mostRecentMovies)="getMostRecentMovies($event)"></app-actor-movies>
+
+        <hr class="mt-4" />
+
+        <a class="btn btn-secondary mt-2" [routerLink]="['/']">
+            Back to Actors List
+        </a>
+    </div>
+</div>
